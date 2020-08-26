@@ -1,0 +1,126 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #142850;
+}
+
+.container {
+    margin: auto;
+    width: 46em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.frame {
+    width: 15em;
+    height: 15em;
+    background: #172e5b;
+    transition: 200ms;
+}
+
+.frame:hover {
+    background: #14284f;
+    transition: 200ms;
+}
+
+.frame:active {
+    background: #101f3c;
+}
+
+.text {
+    user-select: none;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12em;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+.title {
+    text-align: center;
+    font-family: Calibri, serif;
+    font-size: 4em;
+    padding: .2em;
+    color: white;
+}
+
+.container-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+#root-container {
+    margin: auto;
+    width: 46em;
+    padding: 0 1em 1em 1em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 2em;
+    background: #172e5b;
+}
+
+#frame-0 {
+    border-bottom: 1px solid white;
+    border-right: 1px solid white;
+    border-top-left-radius: 1em;
+}
+
+#frame-1 {
+    border-bottom: 1px solid white;
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+}
+
+#frame-2 {
+    border-bottom: 1px solid white;
+    border-left: 1px solid white;
+    border-top-right-radius: 1em;
+}
+
+#frame-3 {
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    border-right: 1px solid white;
+}
+
+#frame-4 {
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+}
+
+#frame-5 {
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    border-left: 1px solid white;
+}
+
+#frame-6 {
+    border-top: 1px solid white;
+    border-right: 1px solid white;
+    border-bottom-left-radius: 1em;
+}
+
+#frame-7 {
+    border-top: 1px solid white;
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+}
+
+#frame-8 {
+    border-top: 1px solid white;
+    border-left: 1px solid white;
+    border-bottom-right-radius: 1em;
+}
