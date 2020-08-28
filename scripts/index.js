@@ -7,10 +7,13 @@ const map = [
 let current = 'X'
 
 function onClick(i, j) {
-    if (map[i][j] === '') {
-        map[i][j] = current
-        current = (current === 'X') ? 'O' : 'X'
-        updateMap()
+    if(current === 'X') {
+        if (map[i][j] === '') {
+            map[i][j] = current
+            current = 'O'
+            updateMap()
+            nextPlay(map)
+        }
     }
 }
 
@@ -26,8 +29,6 @@ function updateMap() {
 }
 
 window.onload = function () {
-    init('X')
-
     let anchors = document.getElementsByClassName('frame')
 
     let count = 0, i = 0, j = 0

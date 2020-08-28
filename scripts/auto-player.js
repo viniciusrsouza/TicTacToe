@@ -1,70 +1,52 @@
-function init(starter) {
-    const node = {
-        playing: starter,
-        state: [
-            ['', '', ''],
-            ['', '', ''],
-            ['', '', '']
-        ],
-        weight: 0,
-        play: [],
-        children: []
+let _node = GAME_TREE
+let _path = findPath(_node)
+
+let lim = 1
+
+function nextPlay(map) {
+    if(lim++ === 10) return
+    console.log("CALL")
+    console.log(_path)
+    console.log(map, _node.state)
+    if (equals(map, _node.state)) {
+        const state = _path?.pop()
+        console.log(state)
+        if (state !== undefined) {
+            _node = _node.children[state]
+            map[_node.play[0]][_node.play[1]] = 'O'
+            current = 'X'
+            updateMap()
+        }
+    } else {
+        for (let child of _node.children) {
+            if (equals(child.state, map)) {
+                _path = findPath(child)
+                _node = child
+                nextPlay(map)
+                break
+            }
+        }
     }
-    loadChildren(node, (node.playing === 'X') ? 'O' : 'X',)
-    console.log(node)
 }
 
-function loadChildren(node, desired) {
+function findPath(node) {
+    if (node.weight === 1) return []
+    if (!node.children) return []
+
+    for (let i = 0; i < node.children.length; i++) {
+        const child = node.children[i]
+        const path = findPath(child)
+        if (path) {
+            return [i, ...path]
+        }
+    }
+}
+
+function equals(arr1, arr2) {
     for (let i = 0; i < 3; i++) {
         for (let j = 0; j < 3; j++) {
-            if (node.state[i][j] === '') {
-                const state = []
-                cloneArray(node.state, state)
-                state[i][j] = node.playing
-
-                let weight = 0
-                const result = gameWon(state)
-                if (result === desired) weight = 1
-                else if (!result) weight = 0
-                else weight = -1
-
-                const child = {
-                    playing: (node.playing === 'X') ? 'O' : 'X',
-                    weight: weight,
-                    state: state,
-                    play: [i, j],
-                    children: []
-                }
-                node.children.push(child)
-                loadChildren(child)
-            }
+            if (arr1[i][j] !== arr2[i][j]) return false
         }
     }
-}
-
-function cloneArray(from, to) {
-    for (let i = 0; i < from.length; i++) {
-        to[i] = []
-        for (let j = 0; j < from[i].length; j++) {
-            to[i].push(from[i][j])
-        }
-    }
-}
-
-function gameWon(map) {
-    if (map[0][0] === map[1][1] && map[0][0] === map[2][2]) {
-        return map[0][0]
-    } else if (map[0][2] === map[1][1] && map[0][2] === map[2][0]) {
-        return map[0][2]
-    } else {
-        for (let i = 0; i < 3; i++) {
-            if (map[i][0] === map[i][1] && map[i][0] === map[i][2]) {
-                return map[i][0]
-            }
-            if (map[0][i] === map[1][i] && map[0][i] === map[2][i]) {
-                return map[0][i]
-            }
-        }
-    }
-    return undefined
+    return true
 }
